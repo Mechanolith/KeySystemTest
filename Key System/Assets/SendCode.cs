@@ -15,7 +15,7 @@ public class SendCode : MonoBehaviour {
     public void SendToServer(string code, string targetURL) 
     {
         WWWForm outForm = new WWWForm();
-        string steamID = "";
+        string steamID = "TEST";
         //Get steamID.
 
         //Send both to server.
@@ -46,6 +46,6 @@ public class SendCode : MonoBehaviour {
     //If it was, distribute the correct reward.
     void ParseResults(WWW www) 
     {
- 
+        Debug.Log(www.text);
     }
 }

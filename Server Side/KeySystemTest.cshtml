@@ -1,4 +1,53 @@
 ﻿@{
-    //What the fuck do I do with this?
-    //How do I even web side?
+    //Get the incoming data.
+    if (IsPost) { 
+        var keyString = Request.Form.GetValues("Key");
+        var IDString = Request.Form.GetValues("ID");
+        
+    
+        //Search the data base for a matching key
+        /*
+        for(int i = 0; i < *Database sizeof*; i++)
+        {
+        
+        }
+        */
+
+        int rewardNum = KeyMatched(keyString[0]);
+
+        var testInput = "";
+
+        if (rewardNum > 0)
+        {
+            testInput = "The Key is " + keyString[0] + " and the ID is " + IDString[0] + ". The reward is " + rewardNum + ".";
+        }
+        else 
+        {
+            testInput = "The Key " + keyString[0] + " has already been redeemed to " + IDString[0] + ".";
+        }
+    
+        Response.Write(testInput);
+    }
 }
+
+@functions
+{
+    int KeyMatched(string key) 
+    {
+        int output = 0;
+        
+        //if key not redeemed
+        //output = reward num.
+        
+        //FOR TESTING
+        if (key == "5") 
+        {
+            output = 7;    
+        }
+
+        return output;
+    }
+}
+
+<p>The HDG key test site is running...</p>
+<p>Probably.</p>
