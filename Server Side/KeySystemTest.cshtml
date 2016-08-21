@@ -1,21 +1,30 @@
 ﻿@{
+    var db = Database.Open("KeyDatabase");
+    var dbState = db.Connection.State;
+    
     //Get the incoming data.
     if (IsPost) { 
         var keyString = Request.Form.GetValues("Key");
         var IDString = Request.Form.GetValues("ID");
         
-    
         //Search the data base for a matching key
-        /*
-        for(int i = 0; i < *Database sizeof*; i++)
-        {
         
+        var queryString = "SELECT * FROM KeysV2";// WHERE Key='" + keyString + "'";
+        int rewardNum = 0;
+        
+        /*
+        foreach (var row in db.Query(queryString))
+        {
+            if(row.key == keyString)
+            {
+                rewardNum = KeyMatched(row.key);
+            }
         }
         */
 
-        int rewardNum = KeyMatched(keyString[0]);
-
-        var testInput = "";
+        //Should only return one value, thus accessed via first.
+        //var row = db.Query(queryString);
+        var testInput = ""; // "ROW DATA: " + row;
 
         if (rewardNum > 0)
         {
@@ -28,26 +37,30 @@
     
         Response.Write(testInput);
     }
+    //db.Close();
 }
 
 @functions
 {
-    int KeyMatched(string key) 
+    int KeyMatched(string key) //Really should give an entire record.
     {
         int output = 0;
         
-        //if key not redeemed
-        //output = reward num.
+        //If key not redeemed
+            //output = reward num.
         
-        //FOR TESTING
-        if (key == "5") 
-        {
-            output = 7;    
-        }
+            //If key is single use.
+                //Set Key to redeemed.
+        
+            //Else, set key to used for this ID.
 
         return output;
     }
 }
 
+<p>Connection String: @db.Connection.ConnectionString</p>
+<p>Database: @db.Connection.Database</p
+<p>Initial DB State (immediately after Open command) was: @dbState</p>
+<p>Current DB State is: @db.Connection.State</p
 <p>The HDG key test site is running...</p>
 <p>Probably.</p>

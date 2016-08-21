@@ -4,7 +4,12 @@ using System.Collections;
 public class SendCode : MonoBehaviour {
     public string testCode;
     public string url = "http://www.handsomedragongames.com/KeyTest.php"; //Need to update this to the correct address. Also make it changable.
-	
+
+    void Start() 
+    {
+        SendToServer(testCode, url);
+    }
+
 	void Update () {
 	    if(Input.GetKeyDown(KeyCode.P))
         {
@@ -28,6 +33,7 @@ public class SendCode : MonoBehaviour {
 
     IEnumerator WaitForRequest(WWW www) 
     {
+        Debug.Log("Begin Post Request");
         yield return www;
 
         //Error Check
